@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[var(--bg-base)] text-[var(--text-base)] antialiased">
+      <body className="bg-slate-950 text-slate-50 antialiased">
         {children}
       </body>
     </html>
