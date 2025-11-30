@@ -5,26 +5,45 @@ import Image from "next/image";
 
 export default function LumaHomePageEn() {
   return (
-    <main className="min-h-screen bg-[#020617] text-slate-200 selection:bg-yellow-500/30">
+    // CHANGE 1: The background is now a subtle gradient that centers light near the top
+    // and fades to deep void at the bottom, giving it depth.
+    <main className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0f172a] via-[#020617] to-[#020617] text-slate-200 selection:bg-yellow-500/30 relative overflow-hidden">
       
+      {/* CHANGE 2: Subtle Star Field / Constellations 
+          We use a repeating subtle noise texture and give it a very slow drift. 
+          Ensure public/noise.png exists (a transparent png with slight white noise grain). */}
+      <div className="pointer-events-none absolute inset-0 -z-20 mix-blend-overlay opacity-[0.15] animate-drift bg-[url('/noise.png')]"></div>
+
+
+      {/* CHANGE 3: The Background Turning Sigil 
+          Placed absolutely so it sits behind the middle sections. 
+          Very low opacity, very slow spin. */}
+      <div className="pointer-events-none absolute left-1/2 top-[40%] -translate-x-1/2 -translate-y-1/2 -z-10 opacity-[0.03] animate-spin-cosmic">
+        <Image
+          src="/luma-sigil.svg"
+          alt=""
+          width={800}
+          height={800}
+          className="blur-xl"
+          aria-hidden="true"
+        />
+      </div>
+
+
       {/* =========================================
           HERO SECTION
       ========================================= */}
-      <section className="relative px-6 py-24 md:py-32 border-b border-white/5 overflow-hidden">
+      <section className="relative px-6 py-24 md:py-32 border-b border-white/5">
         
-        {/* Ambient Breathing Light */}
+        {/* Ambient Breathing Light (Existing, but using the slower animation) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 opacity-60 animate-pulse"
+          className="pointer-events-none absolute inset-0 -z-10 opacity-60 animate-pulse-slow"
           style={{
             background:
               "radial-gradient(circle at 50% -10%, rgba(250,204,21,0.15), transparent 70%)",
-            animationDuration: "4s", // Inline style to slow it down slightly if tailwind config isn't tweaked
           }}
         />
-
-        {/* Subtle Texture (Optional - adds tactile feel) */}
-        <div className="absolute inset-0 -z-10 bg-[url('/noise.png')] opacity-[0.02] mix-blend-overlay"></div>
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
           
@@ -35,7 +54,7 @@ export default function LumaHomePageEn() {
             </p>
 
             <p className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] text-slate-300 backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2 shadow-[0_0_8px_rgba(250,204,21,0.6)]"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2 shadow-[0_0_8px_rgba(250,204,21,0.6)] animate-pulse"></span>
               Mutual-credit · Community economy · Human-paced
             </p>
           </div>
@@ -44,7 +63,7 @@ export default function LumaHomePageEn() {
           <div className="flex flex-col items-center gap-6 mb-8">
             <div className="relative">
               {/* Glow behind sigil */}
-              <div className="absolute inset-0 bg-yellow-400/20 blur-2xl rounded-full"></div>
+              <div className="absolute inset-0 bg-yellow-400/20 blur-3xl rounded-full animate-pulse-slow"></div>
               <Image
                 src="/luma-sigil.svg"
                 alt="LUMA sigil"
@@ -70,7 +89,7 @@ export default function LumaHomePageEn() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Link
               href="/en/join"
-              className="group relative rounded-full px-8 py-3.5 text-sm md:text-base bg-yellow-400/10 border border-yellow-400/40 text-yellow-100 hover:bg-yellow-400/20 hover:border-yellow-400/60 transition-all duration-300 shadow-[0_0_20px_-10px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_-5px_rgba(250,204,21,0.5)]"
+              className="group relative rounded-full px-8 py-3.5 text-sm md:text-base bg-yellow-400/10 border border-yellow-400/40 text-yellow-100 hover:bg-yellow-400/20 hover:border-yellow-400/60 transition-all duration-500 shadow-[0_0_20px_-10px_rgba(250,204,21,0.3)] hover:shadow-[0_0_35px_-5px_rgba(250,204,21,0.5)]"
             >
               <span className="relative z-10 font-medium tracking-wide">Join the Early Circle</span>
             </Link>
@@ -93,7 +112,7 @@ export default function LumaHomePageEn() {
       {/* =========================================
           WHAT IS LUMA?
       ========================================= */}
-      <section id="what-is-luma" className="px-6 py-20 relative">
+      <section id="what-is-luma" className="px-6 py-24 relative z-10">
         <div className="max-w-5xl mx-auto space-y-10">
           
           <div className="space-y-4 text-center md:text-left">
@@ -111,7 +130,7 @@ export default function LumaHomePageEn() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {/* Card 1 */}
-            <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-sm hover:bg-white/[0.04] transition duration-500">
+            <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-sm hover:bg-white/[0.04] transition duration-500 hover:border-white/10">
               <h3 className="font-serif text-xl text-slate-200 mb-3 group-hover:text-yellow-200/90 transition">LUMA as frequency</h3>
               <p className="text-sm text-slate-400 leading-relaxed">
                 A reminder that what we&apos;re really exchanging is{" "}
@@ -121,7 +140,7 @@ export default function LumaHomePageEn() {
             </div>
 
             {/* Card 2 */}
-            <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-sm hover:bg-white/[0.04] transition duration-500">
+            <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-sm hover:bg-white/[0.04] transition duration-500 hover:border-white/10">
               <h3 className="font-serif text-xl text-slate-200 mb-3 group-hover:text-yellow-200/90 transition">LUMA as community</h3>
               <p className="text-sm text-slate-400 leading-relaxed">
                 A network of humans, circles, and projects who want to weave
@@ -131,7 +150,7 @@ export default function LumaHomePageEn() {
             </div>
 
             {/* Card 3 */}
-            <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-sm hover:bg-white/[0.04] transition duration-500">
+            <div className="group rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-sm hover:bg-white/[0.04] transition duration-500 hover:border-white/10">
               <h3 className="font-serif text-xl text-slate-200 mb-3 group-hover:text-yellow-200/90 transition">LUMA as a system</h3>
               <p className="text-sm text-slate-400 leading-relaxed">
                 A mutual-credit ledger of time and presence, with simple roles
@@ -148,7 +167,7 @@ export default function LumaHomePageEn() {
       ========================================= */}
       <section
         id="why-now"
-        className="px-6 py-20 bg-gradient-to-b from-white/[0.02] to-transparent border-y border-white/5"
+        className="px-6 py-24 bg-gradient-to-b from-white/[0.02] to-transparent border-y border-white/5 relative z-10"
       >
         <div className="max-w-5xl mx-auto space-y-6">
           <h2 className="text-2xl md:text-3xl font-serif text-slate-200">
@@ -177,7 +196,7 @@ export default function LumaHomePageEn() {
       {/* =========================================
           HOW IT WORKS
       ========================================= */}
-      <section id="how-it-works-summary" className="px-6 py-20">
+      <section id="how-it-works-summary" className="px-6 py-24 relative z-10">
         <div className="max-w-5xl mx-auto space-y-10">
           
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -210,7 +229,7 @@ export default function LumaHomePageEn() {
               { title: "Do the work", desc: "Sessions, design, hosting, support – whatever is being shared." },
               { title: "Record completion", desc: "The giver receives +LUMA, the receiver −LUMA. Reciprocity maps appear." }
             ].map((step, index) => (
-              <div key={index} className="relative rounded-2xl border border-white/5 bg-[#0B0F1F] p-5 hover:border-white/10 transition">
+              <div key={index} className="relative rounded-2xl border border-white/5 bg-white/[0.01] p-5 hover:border-white/10 hover:bg-white/[0.03] transition duration-300 backdrop-blur-sm">
                 <span className="absolute top-5 right-5 text-xs font-serif text-white/10 text-4xl leading-none -z-0">
                   {index + 1}
                 </span>
@@ -227,7 +246,7 @@ export default function LumaHomePageEn() {
       ========================================= */}
       <section
         id="use-cases-teaser"
-        className="px-6 py-20 bg-white/[0.02] border-y border-white/5"
+        className="px-6 py-24 bg-white/[0.02] border-y border-white/5 relative z-10"
       >
         <div className="max-w-5xl mx-auto space-y-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -250,7 +269,7 @@ export default function LumaHomePageEn() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-3 text-sm">
-            <div className="rounded-2xl border border-white/5 bg-[#020617] p-6">
+            <div className="rounded-2xl border border-white/5 bg-white/[0.01] p-6 backdrop-blur-sm">
               <h3 className="font-serif text-lg text-slate-200 mb-3">
                 Healers, coaches &amp; guides
               </h3>
@@ -260,7 +279,7 @@ export default function LumaHomePageEn() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/5 bg-[#020617] p-6">
+            <div className="rounded-2xl border border-white/5 bg-white/[0.01] p-6 backdrop-blur-sm">
               <h3 className="font-serif text-lg text-slate-200 mb-3">
                 Designers &amp; creatives
               </h3>
@@ -270,7 +289,7 @@ export default function LumaHomePageEn() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/5 bg-[#020617] p-6">
+            <div className="rounded-2xl border border-white/5 bg-white/[0.01] p-6 backdrop-blur-sm">
               <h3 className="font-serif text-lg text-slate-200 mb-3">
                 Circles &amp; communities
               </h3>
@@ -286,7 +305,7 @@ export default function LumaHomePageEn() {
       {/* =========================================
           JOIN / CTA
       ========================================= */}
-      <section id="join" className="px-6 py-24">
+      <section id="join" className="px-6 py-24 relative z-10">
         <div className="max-w-5xl mx-auto grid gap-12 md:grid-cols-[2fr_1.2fr] items-start">
           
           {/* Text Side */}
@@ -310,13 +329,13 @@ export default function LumaHomePageEn() {
             <div className="flex flex-wrap gap-4 pt-4">
               <Link
                 href="/en/join"
-                className="rounded-full px-8 py-4 text-sm md:text-base bg-yellow-400 text-slate-900 hover:bg-yellow-300 transition font-medium shadow-[0_0_20px_-5px_rgba(250,204,21,0.4)]"
+                className="rounded-full px-8 py-4 text-sm md:text-base bg-yellow-400 text-slate-900 hover:bg-yellow-300 transition duration-300 font-medium shadow-[0_0_20px_-5px_rgba(250,204,21,0.4)] hover:shadow-[0_0_30px_-5px_rgba(250,204,21,0.6)]"
               >
                 I&apos;d like to join / stay close
               </Link>
               <Link
                 href="/en/whitepaper"
-                className="rounded-full px-8 py-4 text-sm border border-white/10 text-slate-300 hover:bg-white/5 hover:text-white transition"
+                className="rounded-full px-8 py-4 text-sm border border-white/10 text-slate-300 hover:bg-white/5 hover:text-white transition duration-300"
               >
                 Read the whitepaper
               </Link>
@@ -347,7 +366,7 @@ export default function LumaHomePageEn() {
       {/* =========================================
           FOOTER NOTE
       ========================================= */}
-      <footer className="px-6 pb-12">
+      <footer className="px-6 pb-12 relative z-10">
         <div className="max-w-5xl mx-auto text-center border-t border-white/5 pt-10">
           <p className="text-[11px] md:text-xs text-slate-500 tracking-wide uppercase">
             LUMA is an evolving field. This page reflects our understanding right

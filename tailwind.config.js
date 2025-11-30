@@ -1,21 +1,30 @@
 // tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  content: [
+    // ... your content paths
+  ],
   theme: {
     extend: {
       fontFamily: {
-        // Add a serif font for that "Timeless/Contract" feel
-        // Ensure you import this font in layout.tsx!
+        // Ensure your serif font is set up here
         serif: ['var(--font-playfair)', 'serif'], 
       },
       animation: {
-        // A very slow, gentle pulse for the "Living" aspect
         'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        // A very slow rotation for the background sigil (3 minutes per rotation)
+        'spin-cosmic': 'spin 180s linear infinite',
+        // A slow drift for stars
+        'drift': 'drift 60s linear infinite alternate',
       },
-      backgroundImage: {
-        // A subtle gradient for the 'Void' background
-        'void-gradient': 'radial-gradient(circle at center, #1e293b 0%, #020617 100%)',
+      keyframes: {
+        drift: {
+          '0%': { transform: 'translate(0, 0)' },
+          '100%': { transform: 'translate(-5%, -2%)' },
+        }
       }
     },
   },
-  // ...
+  plugins: [],
 }
