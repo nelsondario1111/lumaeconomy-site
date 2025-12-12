@@ -1,0 +1,3 @@
+[submodule "content/hq"]
+	path = content/hq
+	url = git@github-nelson:nelsondario1111/lumaeconomy-hq.git
