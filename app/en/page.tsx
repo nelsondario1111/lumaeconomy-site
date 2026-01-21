@@ -238,6 +238,23 @@ export default function LumaHomePageEn() {
               </div>
             ))}
           </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">New</p>
+              <h3 className="text-xl font-serif text-slate-100">Explore the Lumina app flow</h3>
+              <p className="text-sm text-slate-400 max-w-2xl">
+                Step inside the prototype experience to see the mutual-credit feed, mini-contracts,
+                wallet, and Lumina AI guidance.
+              </p>
+            </div>
+            <Link
+              href="/en/lumina-app"
+              className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm border border-yellow-400/40 text-yellow-200 hover:bg-yellow-400/10 hover:text-yellow-100 transition"
+            >
+              View the prototype →
+            </Link>
+          </div>
         </div>
       </section>
 
